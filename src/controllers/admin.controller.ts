@@ -12,6 +12,8 @@ const adminController = {
             return res.status(400).json({ error: 'Missing fields!' });
         }
 
+        const { role } = res.locals
+
         const users = await getAllUsers();
 
         let user = users.find((user) => {
@@ -27,7 +29,7 @@ const adminController = {
                 const user_id = await createUser(displayName, email, password, 'doctor');
                 await Doctor.create({ user_id });
 
-                return res.status(201).json({ success: `A new doctor with id: ${user_id} was created successfully!` })
+                return res.status(201).json({ success: `A new doctor with id: ${user_id} was created successfully!`, role: role })
             } catch (error) {
                 return res.status(500).json({ error: 'Something went wrong!' });
             }

@@ -6,6 +6,7 @@ import * as admin from "firebase-admin";
 admin.initializeApp();
 
 import { createAdmin } from './middlewares/updateTables';
+import { Department } from './models/departments.model';
 
 
 const PORT = process.env.PORT;
@@ -15,6 +16,11 @@ async function main() {
     app.listen(PORT, () => {
         console.log('Server running on port:', PORT);
         createAdmin("admin", "admin@admin.com", "123456789");
+        Department.findOrCreate({
+            where: {
+                department: "Psicology"
+            }
+        })
     });
 
 }

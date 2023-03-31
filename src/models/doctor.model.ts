@@ -20,7 +20,8 @@ Doctor.init({
     },
     department_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 1
     },
     is_available: {
         type: DataTypes.BOOLEAN,

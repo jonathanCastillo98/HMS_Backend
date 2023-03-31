@@ -42,6 +42,7 @@ require("./models/associations");
 const admin = __importStar(require("firebase-admin"));
 admin.initializeApp();
 const updateTables_1 = require("./middlewares/updateTables");
+const departments_model_1 = require("./models/departments.model");
 const PORT = process.env.PORT;
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -49,6 +50,11 @@ function main() {
         app_1.default.listen(PORT, () => {
             console.log('Server running on port:', PORT);
             (0, updateTables_1.createAdmin)("admin", "admin@admin.com", "123456789");
+            departments_model_1.Department.findOrCreate({
+                where: {
+                    department: "Psicology"
+                }
+            });
         });
     });
 }

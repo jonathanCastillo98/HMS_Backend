@@ -18,7 +18,8 @@ Doctor.init({
     },
     department_id: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 1
     },
     is_available: {
         type: sequelize_1.DataTypes.BOOLEAN,

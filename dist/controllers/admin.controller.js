@@ -19,6 +19,7 @@ const adminController = {
         if (!displayName || !email || !password) {
             return res.status(400).json({ error: 'Missing fields!' });
         }
+        const { role } = res.locals;
         const users = yield (0, firebase_1.getAllUsers)();
         let user = users.find((user) => {
             if (user.email === email || user.userName === displayName) {
@@ -32,7 +33,7 @@ const adminController = {
             try {
                 const user_id = yield (0, firebase_1.createUser)(displayName, email, password, 'doctor');
                 yield doctor_model_1.Doctor.create({ user_id });
-                return res.status(201).json({ success: `A new doctor with id: ${user_id} was created successfully!` });
+                return res.status(201).json({ success: `A new doctor with id: ${user_id} was created successfully!`, role: role });
             }
             catch (error) {
                 return res.status(500).json({ error: 'Something went wrong!' });
