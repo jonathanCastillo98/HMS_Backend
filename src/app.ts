@@ -6,7 +6,8 @@ const app = express();
 
 // Middlewares
 app.use(express.json())
-app.use(cors)
 app.use('/', router);
+app.use(cors)
+
 
 export default app;

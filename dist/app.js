@@ -9,6 +9,6 @@ const cors = require("cors");
 const app = (0, express_1.default)();
 // Middlewares
 app.use(express_1.default.json());
-app.use(cors);
 app.use('/', routes_1.default);
+app.use(cors);
 exports.default = app;
